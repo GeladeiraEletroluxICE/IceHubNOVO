@@ -504,302 +504,137 @@ end
 -- =====================================================
 
 -- =====================================================
--- COMPLEMENTO: SISTEMA DE PROGRESSO NA ABA "MAIN"
+-- COMPLEMENTO: SISTEMA DE PROGRESSO NA ABA "MAIN" (CORRIGIDO)
 -- =====================================================
 do
-    local TweenService = game:GetService("TweenService")
     local RunService = game:GetService("RunService")
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
-    local frame3 = LMG2L["Frame3_17"]  -- painel direito onde o conteúdo aparece
-    local btnMain = LMG2L["MAIN_e"]    -- botão "– Main –"
-    local categoriaLabel = LMG2L["TextBox_18"]  -- label "CATEGORIA :"
+    local frame3 = LMG2L["Frame3_17"]  -- painel direito
+    local btnMain = LMG2L["MAIN_e"]
+    local categoriaLabel = LMG2L["TextBox_18"]
     
-    -- Variáveis de controle
+    -- Variáveis
     local currentScroll = nil
     local updateConnection = nil
     local isMainActive = false
     
-    -- Cores do tema (para manter estética)
+    -- Cores do tema
     local bgColor = Color3.fromRGB(36, 52, 65)
     local textColor = Color3.fromRGB(255, 255, 255)
     local accentColor = Color3.fromRGB(140, 205, 255)
     local font = Font.new("rbxasset://fonts/families/FredokaOne.json")
     
     -- ========== FUNÇÕES DE DETECÇÃO (BLOX FRUITS) ==========
-    -- Nota: Essas funções tentam acessar as instâncias comuns do jogo.
-    -- Caso algo não exista, retorna valores padrão.
-    
-    local function getLeaderstat(statName)
-        local leaderstats = player:FindFirstChild("leaderstats")
-        if leaderstats then
-            local stat = leaderstats:FindFirstChild(statName)
-            if stat and stat:IsA("NumberValue") then
-                return stat.Value
+    local function getLeaderstat(name)
+        local ls = player:FindFirstChild("leaderstats")
+        if ls then
+            local stat = ls:FindFirstChild(name)
+            if stat then
+                if stat:IsA("NumberValue") then return stat.Value end
+                if stat:IsA("IntValue") then return stat.Value end
             end
         end
         return 0
     end
     
-    local function getLevel()
-        return getLeaderstat("Level") or getLeaderstat("Nivel") or 0
-    end
-    
-    local function getMoney()
-        return getLeaderstat("Money") or getLeaderstat("Belí") or 0
-    end
-    
-    local function getFragments()
-        return getLeaderstat("Fragments") or getLeaderstat("Frag") or 0
-    end
-    
+    local function getLevel() return getLeaderstat("Level") end
+    local function getMoney() return getLeaderstat("Money") end
+    local function getFragments() return getLeaderstat("Fragments") end
     local function getBones()
-        local bones = player:FindFirstChild("Bones") or (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Bones"))
-        if bones and bones:IsA("NumberValue") then
-            return bones.Value
-        end
+        local bones = player:FindFirstChild("Bones")
+        if bones and bones:IsA("NumberValue") then return bones.Value end
         return 0
     end
-    
     local function getEctoplasm()
-        local ecto = player:FindFirstChild("Ectoplasm") or (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Ectoplasm"))
-        if ecto and ecto:IsA("NumberValue") then
-            return ecto.Value
-        end
+        local ecto = player:FindFirstChild("Ectoplasm")
+        if ecto and ecto:IsA("NumberValue") then return ecto.Value end
         return 0
     end
-    
     local function getEquippedFruit()
-        local fruit = player:FindFirstChild("EquippedFruit") or (player.Character and player.Character:FindFirstChild("Fruit"))
-        if fruit then
-            return fruit.Name:gsub("Fruit", "")
-        end
+        local fruit = player:FindFirstChild("EquippedFruit")
+        if fruit and fruit:IsA("StringValue") then return fruit.Value end
         return "Nenhuma"
     end
-    
     local function getRace()
-        -- Raça geralmente está em um valor "Race" ou no Character
-        local race = player:FindFirstChild("Race") or (player.Character and player.Character:FindFirstChild("Race"))
-        if race and race:IsA("StringValue") then
-            return race.Value
-        end
+        local race = player:FindFirstChild("Race")
+        if race and race:IsA("StringValue") then return race.Value end
         return "Humano"
     end
-    
     local function getSea()
-        -- Detecta o mar baseado no nível ou em uma variável "Sea"
-        local level = getLevel()
-        if level < 700 then return "Primeiro Mar"
-        elseif level < 1500 then return "Segundo Mar"
+        local lvl = getLevel()
+        if lvl < 700 then return "Primeiro Mar"
+        elseif lvl < 1500 then return "Segundo Mar"
         else return "Terceiro Mar"
         end
     end
     
-    -- Funções genéricas para verificar se o jogador possui um item (tool, habilidade, etc.)
+    -- Verificar se possui item (simplificado)
     local function hasItem(itemName)
-        -- Procura no Backpack, no Character ou no PlayerGui
-        local backpack = player:FindFirstChild("Backpack")
-        if backpack and backpack:FindFirstChild(itemName) then return true end
-        local char = player.Character
-        if char and char:FindFirstChild(itemName) then return true end
-        -- Também pode ser um BoolValue em Player: "Unlocked" + itemName
-        local unlocked = player:FindFirstChild("Unlocked" .. itemName)
-        if unlocked and unlocked:IsA("BoolValue") and unlocked.Value then return true end
+        if player.Backpack and player.Backpack:FindFirstChild(itemName) then return true end
+        if player.Character and player.Character:FindFirstChild(itemName) then return true end
         return false
     end
     
-    local function getMastery(styleName)
-        -- Tenta achar o valor de maestria para um estilo (geralmente em um NumberValue dentro do jogador)
-        local mastery = player:FindFirstChild(styleName .. "Mastery") or (player:FindFirstChild("Mastery") and player.Mastery:FindFirstChild(styleName))
-        if mastery and mastery:IsA("NumberValue") then
-            return mastery.Value
-        end
+    -- Maestria (exemplo: se o jogador tem um NumberValue com o nome do estilo + "Mastery")
+    local function getMastery(style)
+        local m = player:FindFirstChild(style .. "Mastery")
+        if m and m:IsA("NumberValue") then return m.Value end
         return 0
     end
     
-    -- Funções específicas para cada informação (simplificadas, mas expansíveis)
-    local function isSabreUnlocked() return hasItem("Sabre") or getMastery("Sabre") > 0 end
-    local function hasSharkSaw() return hasItem("SharkSaw") end
-    local function hasHakiArmamento() return hasItem("Busoshoku") or player:FindFirstChild("Busoshoku") ~= nil end
-    local function hasHakiObservacao() return hasItem("Kenbunshoku") or player:FindFirstChild("Kenbunshoku") ~= nil end
-    local function hasSoru() return hasItem("Soru") or player:FindFirstChild("Soru") ~= nil end
-    local function hasDoubleJump() return hasItem("DoubleJump") or player:FindFirstChild("DoubleJump") ~= nil end
-    
-    -- Estilos V1
-    local function hasElectricV1() return getMastery("Electric") > 0 end
-    local function getElectricMastery() return getMastery("Electric") end
-    local function hasDarkStepV1() return getMastery("DarkStep") > 0 end
-    local function getDarkStepMastery() return getMastery("DarkStep") end
-    local function hasSharkmanV1() return getMastery("SharkmanKarate") > 0 end
-    local function getSharkmanMastery() return getMastery("SharkmanKarate") end
-    
-    -- V2 e avançados
-    local function hasDarkStepV2() return getMastery("DarkStepV2") > 0 or (hasDarkStepV1() and getDarkStepMastery() >= 300) end
-    local function hasSharkmanV2() return getMastery("SharkmanKarateV2") > 0 end
-    local function hasSuperhuman() return getMastery("Superhuman") > 0 end
-    local function getSuperhumanMastery() return getMastery("Superhuman") end
-    local function hasDragonBreath() return getMastery("DragonBreath") > 0 end
-    local function getDragonBreathMastery() return getMastery("DragonBreath") end
-    local function hasElectricV2() return getMastery("ElectricV2") > 0 end
-    local function getElectricV2Mastery() return getMastery("ElectricV2") end
-    local function hasGodHuman() return getMastery("GodHuman") > 0 end
-    local function getGodHumanMastery() return getMastery("GodHuman") end
-    local function hasSanguineArt() return getMastery("SanguineArt") > 0 end
-    local function getSanguineMastery() return getMastery("SanguineArt") end
-    local function hasDragonTalon() return getMastery("DragonTalon") > 0 end
-    local function getDragonTalonMastery() return getMastery("DragonTalon") end
-    
-    -- Itens do segundo mar
-    local function hasRosa1() return hasItem("Rosa1") end
-    local function hasRosa2() return hasItem("Rosa2") end
-    local function hasRosa3() return hasItem("Rosa3") end
-    local function hasRengoku() return hasItem("Rengoku") end
-    local function hasAcidumRifle() return hasItem("AcidumRifle") end
-    
-    -- Itens terceiro mar
-    local function hasMirrorFractal() return hasItem("MirrorFractal") end
-    local function hasSharkAnchor() return hasItem("SharkAnchor") end
-    local function hasDarkDagger() return hasItem("DarkDagger") end
-    local function hasSpikeyTrident() return hasItem("SpikeyTrident") end
-    local function hasYama() return hasItem("Yama") end
-    local function hasTushita() return hasItem("Tushita") end
-    local function hasCursedDualKatana() return hasItem("CursedDualKatana") end
-    local function hasSoulGuitar() return hasItem("SoulGuitar") end
-    
-    -- Raça V4
-    local function hasRaceV4() return player:FindFirstChild("RaceV4") ~= nil and player.RaceV4.Value == true end
-    
-    -- Progresso de missões (exemplo simplificado)
-    local function isDoflamingoDone() return getLeaderstat("Doflamingo") == 1 end
-    local function isColiseumDone() return getLeaderstat("Coliseum") == 1 end
-    
-    -- Servidor: bosses (detecta se existe no workspace)
-    local function isWhitebeardSpawned()
-        return workspace:FindFirstChild("Whitebeard") ~= nil or workspace:FindFirstChild("WhitebeardBoss") ~= nil
-    end
-    local function isSawSpawned()
-        return workspace:FindFirstChild("Saw") ~= nil
-    end
-    local function isDoflamingoBossSpawned()
-        return workspace:FindFirstChild("Doflamingo") ~= nil
-    end
-    local function isIceAdmiralSpawned()
-        return workspace:FindFirstChild("IceAdmiral") ~= nil
-    end
-    local function isCursedCaptainShipSpawned()
-        return workspace:FindFirstChild("CursedCaptainShip") ~= nil
-    end
-    local function isJeremySpawned()
-        return workspace:FindFirstChild("Jeremy") ~= nil
-    end
-    local function isFactorySpawned()
-        return workspace:FindFirstChild("Factory") ~= nil
-    end
-    local function getCurrentMoon()
-        -- Simulação: puxar de um valor global "MoonPhase"
-        local moon = game:GetService("Lighting"):FindFirstChild("MoonPhase")
-        if moon and moon:IsA("NumberValue") then
-            return moon.Value .. "/8"
-        end
-        return "?"
-    end
-    local function isFullMoon()
-        return getCurrentMoon() == "8/8"
-    end
-    local function isRipIndraSpawned()
-        return workspace:FindFirstChild("RipIndra") ~= nil
-    end
-    local function isKatakuriV1Spawned()
-        return workspace:FindFirstChild("Katakuri") ~= nil
-    end
-    local function isKatakuriV2Spawned()
-        return workspace:FindFirstChild("KatakuriV2") ~= nil
-    end
-    local function isCursedCaptainScytheSpawned()
-        return workspace:FindFirstChild("CursedCaptainScythe") ~= nil
-    end
-    local function isEliteBossSpawned()
-        return workspace:FindFirstChild("EliteBoss") ~= nil
-    end
-    local function isPirateRaidSpawned()
-        return workspace:FindFirstChild("PirateRaid") ~= nil
-    end
-    
-    -- ========== CRIAÇÃO DA INTERFACE DENTRO DO SCROLL ==========
-    local function criarSecao(parent, titulo, yPos)
-        local frame = Instance.new("Frame")
-        frame.Size = UDim2.new(0.95, 0, 0, 30)
-        frame.Position = UDim2.new(0.025, 0, yPos, 0)
-        frame.BackgroundColor3 = accentColor
-        frame.BorderSizePixel = 0
+    -- ========== CRIAÇÃO DA INTERFACE ==========
+    local function criarScroll()
+        if currentScroll then currentScroll:Destroy() end
+        
+        local scroll = Instance.new("ScrollingFrame")
+        scroll.Size = UDim2.new(1, 0, 1, 0)
+        scroll.BackgroundColor3 = bgColor
+        scroll.BackgroundTransparency = 0
+        scroll.BorderSizePixel = 0
+        scroll.CanvasSize = UDim2.new(0, 0, 0, 1200)
+        scroll.ScrollBarThickness = 8
+        scroll.ScrollBarImageColor3 = accentColor
+        
+        -- Corner
         local corner = Instance.new("UICorner")
-        corner.CornerRadius = UDim.new(0, 8)
-        corner.Parent = frame
+        corner.CornerRadius = UDim.new(0, 15)
+        corner.Parent = scroll
         
+        scroll.Parent = frame3
+        return scroll
+    end
+    
+    local function adicionarTexto(parent, text, y, cor)
         local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, 0, 1, 0)
+        label.Size = UDim2.new(0.95, 0, 0, 30)
+        label.Position = UDim2.new(0.025, 0, y, 0)
         label.BackgroundTransparency = 1
-        label.Text = titulo
-        label.TextColor3 = Color3.fromRGB(0,0,0)
+        label.Text = text
+        label.TextColor3 = cor or textColor
         label.FontFace = font
-        label.TextSize = 18
+        label.TextSize = 16
         label.TextXAlignment = Enum.TextXAlignment.Left
-        label.Padding = UDim.new(0, 10)
-        label.Parent = frame
-        
+        label.Parent = parent
+        return label
+    end
+    
+    local function adicionarCheck(parent, labelText, status, y)
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0.95, 0, 0, 25)
+        frame.Position = UDim2.new(0.025, 0, y, 0)
+        frame.BackgroundTransparency = 1
         frame.Parent = parent
-        return frame
-    end
-    
-    local function criarLinhaInfo(parent, texto, valor, yPos, corValor)
-        local linha = Instance.new("Frame")
-        linha.Size = UDim2.new(0.95, 0, 0, 25)
-        linha.Position = UDim2.new(0.025, 0, yPos, 0)
-        linha.BackgroundTransparency = 1
-        linha.Parent = parent
         
-        local txtLabel = Instance.new("TextLabel")
-        txtLabel.Size = UDim2.new(0.5, 0, 1, 0)
-        txtLabel.Position = UDim2.new(0, 0, 0, 0)
-        txtLabel.BackgroundTransparency = 1
-        txtLabel.Text = texto
-        txtLabel.TextColor3 = textColor
-        txtLabel.FontFace = font
-        txtLabel.TextSize = 16
-        txtLabel.TextXAlignment = Enum.TextXAlignment.Left
-        txtLabel.Parent = linha
-        
-        local valLabel = Instance.new("TextLabel")
-        valLabel.Size = UDim2.new(0.4, 0, 1, 0)
-        valLabel.Position = UDim2.new(0.55, 0, 0, 0)
-        valLabel.BackgroundTransparency = 1
-        valLabel.Text = tostring(valor)
-        valLabel.TextColor3 = corValor or accentColor
-        valLabel.FontFace = font
-        valLabel.TextSize = 16
-        valLabel.TextXAlignment = Enum.TextXAlignment.Left
-        valLabel.Parent = linha
-        
-        return {txtLabel, valLabel}
-    end
-    
-    local function criarCheckbox(parent, texto, status, yPos)
-        local linha = Instance.new("Frame")
-        linha.Size = UDim2.new(0.95, 0, 0, 25)
-        linha.Position = UDim2.new(0.025, 0, yPos, 0)
-        linha.BackgroundTransparency = 1
-        linha.Parent = parent
-        
-        local txt = Instance.new("TextLabel")
-        txt.Size = UDim2.new(0.7, 0, 1, 0)
-        txt.Position = UDim2.new(0, 0, 0, 0)
-        txt.BackgroundTransparency = 1
-        txt.Text = texto
-        txt.TextColor3 = textColor
-        txt.FontFace = font
-        txt.TextSize = 16
-        txt.TextXAlignment = Enum.TextXAlignment.Left
-        txt.Parent = linha
+        local lbl = Instance.new("TextLabel")
+        lbl.Size = UDim2.new(0.7, 0, 1, 0)
+        lbl.BackgroundTransparency = 1
+        lbl.Text = labelText
+        lbl.TextColor3 = textColor
+        lbl.FontFace = font
+        lbl.TextSize = 15
+        lbl.TextXAlignment = Enum.TextXAlignment.Left
+        lbl.Parent = frame
         
         local check = Instance.new("TextLabel")
         check.Size = UDim2.new(0.15, 0, 1, 0)
@@ -809,39 +644,36 @@ do
         check.TextColor3 = status and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
         check.FontFace = font
         check.TextSize = 18
-        check.TextXAlignment = Enum.TextXAlignment.Center
-        check.Parent = linha
-        
+        check.Parent = frame
         return check
     end
     
-    local function criarProgressoMaestria(parent, texto, mastery, yPos)
-        local linha = Instance.new("Frame")
-        linha.Size = UDim2.new(0.95, 0, 0, 30)
-        linha.Position = UDim2.new(0.025, 0, yPos, 0)
-        linha.BackgroundTransparency = 1
-        linha.Parent = parent
+    local function adicionarMaestria(parent, labelText, mastery, y)
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0.95, 0, 0, 30)
+        frame.Position = UDim2.new(0.025, 0, y, 0)
+        frame.BackgroundTransparency = 1
+        frame.Parent = parent
         
-        local txt = Instance.new("TextLabel")
-        txt.Size = UDim2.new(0.5, 0, 1, 0)
-        txt.Position = UDim2.new(0, 0, 0, 0)
-        txt.BackgroundTransparency = 1
-        txt.Text = texto
-        txt.TextColor3 = textColor
-        txt.FontFace = font
-        txt.TextSize = 16
-        txt.TextXAlignment = Enum.TextXAlignment.Left
-        txt.Parent = linha
+        local lbl = Instance.new("TextLabel")
+        lbl.Size = UDim2.new(0.5, 0, 1, 0)
+        lbl.BackgroundTransparency = 1
+        lbl.Text = labelText
+        lbl.TextColor3 = textColor
+        lbl.FontFace = font
+        lbl.TextSize = 15
+        lbl.TextXAlignment = Enum.TextXAlignment.Left
+        lbl.Parent = frame
         
-        local masteryLabel = Instance.new("TextLabel")
-        masteryLabel.Size = UDim2.new(0.2, 0, 1, 0)
-        masteryLabel.Position = UDim2.new(0.55, 0, 0, 0)
-        masteryLabel.BackgroundTransparency = 1
-        masteryLabel.Text = mastery .. " / 600"
-        masteryLabel.TextColor3 = accentColor
-        masteryLabel.FontFace = font
-        masteryLabel.TextSize = 14
-        masteryLabel.Parent = linha
+        local masteryLbl = Instance.new("TextLabel")
+        masteryLbl.Size = UDim2.new(0.25, 0, 1, 0)
+        masteryLbl.Position = UDim2.new(0.55, 0, 0, 0)
+        masteryLbl.BackgroundTransparency = 1
+        masteryLbl.Text = mastery .. " / 600"
+        masteryLbl.TextColor3 = accentColor
+        masteryLbl.FontFace = font
+        masteryLbl.TextSize = 14
+        masteryLbl.Parent = frame
         
         local check = Instance.new("TextLabel")
         check.Size = UDim2.new(0.1, 0, 1, 0)
@@ -851,288 +683,131 @@ do
         check.TextColor3 = (mastery > 0) and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
         check.FontFace = font
         check.TextSize = 18
-        check.Parent = linha
-        
-        return check
+        check.Parent = frame
+        return check, masteryLbl
     end
     
-    -- ========== CRIAÇÃO DO SCROLLING FRAME PRINCIPAL ==========
-
-    local function criarScroll()
-        if currentScroll then
-            currentScroll:Destroy()
-            currentScroll = nil
-        end
-        local scroll = Instance.new("ScrollingFrame")
-        scroll.Size = UDim2.new(1, 0, 1, 0)
-        scroll.BackgroundTransparency = 1
-        scroll.CanvasSize = UDim2.new(0, 0, 0, 2000)  -- altura dinâmica será ajustada depois
-        scroll.ScrollBarThickness = 8
-        scroll.ScrollBarImageColor3 = accentColor
-        scroll.Parent = frame3
-        
-        -- Layout automático para organizar os elementos (opcional)
-        local layout = Instance.new("UIListLayout")
-        layout.Padding = UDim.new(0, 8)
-        layout.SortOrder = Enum.SortOrder.LayoutOrder
-        layout.Parent = scroll
-        
-        return scroll
-    end
-    
+    -- ========== PREENCHER DADOS ==========
     local function preencherScroll(scroll)
-        -- Limpa conteúdo anterior (já que o scroll é novo)
-        for _, v in pairs(scroll:GetChildren()) do
-            if v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("UIListLayout") then
-                -- Mantém apenas o layout
-                if not v:IsA("UIListLayout") then v:Destroy() end
+        -- Limpa conteúdo anterior
+        for _, child in pairs(scroll:GetChildren()) do
+            if child:IsA("TextLabel") or child:IsA("Frame") then
+                child:Destroy()
             end
         end
         
-        local layout = scroll:FindFirstChildWhichIsA("UIListLayout")
-        if not layout then
-            layout = Instance.new("UIListLayout")
-            layout.Padding = UDim.new(0, 8)
-            layout.Parent = scroll
-        end
+        local y = 10
         
-        -- Vamos criar seções usando frames com layout order
-        local function addSection(title)
-            local sec = Instance.new("Frame")
-            sec.Size = UDim2.new(0.95, 0, 0, 35)
-            sec.BackgroundColor3 = accentColor
-            sec.BorderSizePixel = 0
-            local corner = Instance.new("UICorner")
-            corner.CornerRadius = UDim.new(0, 8)
-            corner.Parent = sec
-            local lbl = Instance.new("TextLabel")
-            lbl.Size = UDim2.new(1, 0, 1, 0)
-            lbl.BackgroundTransparency = 1
-            lbl.Text = title
-            lbl.TextColor3 = Color3.fromRGB(0,0,0)
-            lbl.FontFace = font
-            lbl.TextSize = 18
-            lbl.TextXAlignment = Enum.TextXAlignment.Left
-            lbl.Padding = UDim.new(0, 10)
-            lbl.Parent = sec
-            sec.Parent = scroll
-            layout:Insert(-1, sec)
-            return sec
-        end
+        -- Seção informações iniciais
+        local titulo1 = adicionarTexto(scroll, "📌 INFORMAÇÕES INICIAIS", y, accentColor)
+        y = y + 30
+        adicionarTexto(scroll, "Mar atual: " .. getSea(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Dinheiro: $" .. getMoney(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Fragmentos: " .. getFragments(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Ossos (Bones): " .. getBones(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Ectoplasmas: " .. getEctoplasm(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Fruta equipada: " .. getEquippedFruit(), y)
+        y = y + 25
+        adicionarTexto(scroll, "Raça: " .. getRace(), y)
+        y = y + 30
         
-        local function addInfoRow(label, value)
-            local row = Instance.new("Frame")
-            row.Size = UDim2.new(0.95, 0, 0, 25)
-            row.BackgroundTransparency = 1
-            local lbl = Instance.new("TextLabel")
-            lbl.Size = UDim2.new(0.5, 0, 1, 0)
-            lbl.BackgroundTransparency = 1
-            lbl.Text = label
-            lbl.TextColor3 = textColor
-            lbl.FontFace = font
-            lbl.TextSize = 16
-            lbl.TextXAlignment = Enum.TextXAlignment.Left
-            lbl.Parent = row
-            local val = Instance.new("TextLabel")
-            val.Size = UDim2.new(0.4, 0, 1, 0)
-            val.Position = UDim2.new(0.55, 0, 0, 0)
-            val.BackgroundTransparency = 1
-            val.Text = tostring(value)
-            val.TextColor3 = accentColor
-            val.FontFace = font
-            val.TextSize = 16
-            val.TextXAlignment = Enum.TextXAlignment.Left
-            val.Parent = row
-            row.Parent = scroll
-            layout:Insert(-1, row)
-            return val
-        end
-        
-        local function addCheckRow(label, status)
-            local row = Instance.new("Frame")
-            row.Size = UDim2.new(0.95, 0, 0, 25)
-            row.BackgroundTransparency = 1
-            local lbl = Instance.new("TextLabel")
-            lbl.Size = UDim2.new(0.7, 0, 1, 0)
-            lbl.BackgroundTransparency = 1
-            lbl.Text = label
-            lbl.TextColor3 = textColor
-            lbl.FontFace = font
-            lbl.TextSize = 16
-            lbl.TextXAlignment = Enum.TextXAlignment.Left
-            lbl.Parent = row
-            local check = Instance.new("TextLabel")
-            check.Size = UDim2.new(0.1, 0, 1, 0)
-            check.Position = UDim2.new(0.8, 0, 0, 0)
-            check.BackgroundTransparency = 1
-            check.Text = status and "✔" or "✖"
-            check.TextColor3 = status and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
-            check.FontFace = font
-            check.TextSize = 18
-            check.Parent = row
-            row.Parent = scroll
-            layout:Insert(-1, row)
-            return check
-        end
-        
-        local function addMasteryRow(label, mastery)
-            local row = Instance.new("Frame")
-            row.Size = UDim2.new(0.95, 0, 0, 30)
-            row.BackgroundTransparency = 1
-            local lbl = Instance.new("TextLabel")
-            lbl.Size = UDim2.new(0.5, 0, 1, 0)
-            lbl.BackgroundTransparency = 1
-            lbl.Text = label
-            lbl.TextColor3 = textColor
-            lbl.FontFace = font
-            lbl.TextSize = 16
-            lbl.TextXAlignment = Enum.TextXAlignment.Left
-            lbl.Parent = row
-            local masteryLbl = Instance.new("TextLabel")
-            masteryLbl.Size = UDim2.new(0.2, 0, 1, 0)
-            masteryLbl.Position = UDim2.new(0.55, 0, 0, 0)
-            masteryLbl.BackgroundTransparency = 1
-            masteryLbl.Text = mastery .. " / 600"
-            masteryLbl.TextColor3 = accentColor
-            masteryLbl.FontFace = font
-            masteryLbl.TextSize = 14
-            masteryLbl.Parent = row
-            local check = Instance.new("TextLabel")
-            check.Size = UDim2.new(0.1, 0, 1, 0)
-            check.Position = UDim2.new(0.85, 0, 0, 0)
-            check.BackgroundTransparency = 1
-            check.Text = (mastery > 0) and "✔" or "✖"
-            check.TextColor3 = (mastery > 0) and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
-            check.FontFace = font
-            check.TextSize = 18
-            check.Parent = row
-            row.Parent = scroll
-            layout:Insert(-1, row)
-            return {check, masteryLbl}
-        end
-        
-        -- ========== PREENCHER DADOS (usando as funções de detecção) ==========
-        -- Seção Informações Iniciais
-        addSection("📌 INFORMAÇÕES INICIAIS")
-        addInfoRow("Mar atual:", getSea())
-        addInfoRow("Dinheiro:", "$" .. getMoney())
-        addInfoRow("Fragmentos:", getFragments())
-        addInfoRow("Ossos (Bones):", getBones())
-        addInfoRow("Ectoplasmas:", getEctoplasm())
-        addInfoRow("Fruta equipada:", getEquippedFruit())
-        addInfoRow("Raça:", getRace())
-        
-        -- Seção Servidor
-        addSection("🌍 SERVIDOR")
-        addCheckRow("Whitebeard spawnado:", isWhitebeardSpawned())
-        addCheckRow("Saw spawnado:", isSawSpawned())
-        addCheckRow("Doflamingo spawnado:", isDoflamingoBossSpawned())
-        addCheckRow("Almirante de Gelo spawnado:", isIceAdmiralSpawned())
-        addCheckRow("Capitão Amaldiçoado (Navio):", isCursedCaptainShipSpawned())
-        addCheckRow("Jeremy spawnado:", isJeremySpawned())
-        addCheckRow("Factory spawnada:", isFactorySpawned())
-        addCheckRow("Lua atual:", getCurrentMoon() .. (isFullMoon() and " (Lua Cheia!)" or ""))
-        addCheckRow("Rip Indra spawnado:", isRipIndraSpawned())
-        addCheckRow("Katakuri V1 spawnado:", isKatakuriV1Spawned())
-        addCheckRow("Katakuri V2 spawnado:", isKatakuriV2Spawned())
-        addCheckRow("Capitão Amaldiçoado (foice):", isCursedCaptainScytheSpawned())
-        addCheckRow("Elite Boss spawnado:", isEliteBossSpawned())
-        addCheckRow("Pirate Raid spawnada:", isPirateRaidSpawned())
+        -- Servidor (simplificado)
+        local titulo2 = adicionarTexto(scroll, "🌍 SERVIDOR", y, accentColor)
+        y = y + 30
+        adicionarCheck(scroll, "Whitebeard spawnado:", workspace:FindFirstChild("Whitebeard") ~= nil, y)
+        y = y + 25
+        adicionarCheck(scroll, "Saw spawnado:", workspace:FindFirstChild("Saw") ~= nil, y)
+        y = y + 25
+        adicionarCheck(scroll, "Doflamingo spawnado:", workspace:FindFirstChild("Doflamingo") ~= nil, y)
+        y = y + 25
+        adicionarCheck(scroll, "Factory spawnada:", workspace:FindFirstChild("Factory") ~= nil, y)
+        y = y + 30
         
         -- Primeiro Mar
-        addSection("🌊 PRIMEIRO MAR")
-        addInfoRow("Nível:", getLevel())
-        addCheckRow("Sabre (item):", isSabreUnlocked())
-        addCheckRow("Shark Saw:", hasSharkSaw())
-        addCheckRow("Haki do Armamento:", hasHakiArmamento())
-        addCheckRow("Haki da Observação:", hasHakiObservacao())
-        addCheckRow("Soru:", hasSoru())
-        addCheckRow("Pulo duplo:", hasDoubleJump())
-        addMasteryRow("Electric V1:", getElectricMastery())
-        addMasteryRow("Dark Step V1:", getDarkStepMastery())
-        addMasteryRow("Sharkman Karate V1:", getSharkmanMastery())
+        local titulo3 = adicionarTexto(scroll, "🌊 PRIMEIRO MAR", y, accentColor)
+        y = y + 30
+        adicionarTexto(scroll, "Nível: " .. getLevel(), y)
+        y = y + 25
+        adicionarCheck(scroll, "Sabre:", hasItem("Sabre"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Shark Saw:", hasItem("SharkSaw"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Haki do Armamento:", hasItem("Busoshoku"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Haki da Observação:", hasItem("Kenbunshoku"), y)
+        y = y + 25
+        adicionarMaestria(scroll, "Electric V1:", getMastery("Electric"), y)
+        y = y + 30
+        adicionarMaestria(scroll, "Dark Step V1:", getMastery("DarkStep"), y)
+        y = y + 30
+        adicionarMaestria(scroll, "Sharkman Karate V1:", getMastery("SharkmanKarate"), y)
+        y = y + 30
         
         -- Segundo Mar
-        addSection("🌊 SEGUNDO MAR")
-        addInfoRow("Nível:", getLevel())
-        addCheckRow("Missão Doflamingo:", isDoflamingoDone())
-        addCheckRow("Missão Coliseu:", isColiseumDone())
-        addCheckRow("Raça V2:", false)  -- placeholder, detectar depois
-        addCheckRow("Raça V3:", false)
-        addCheckRow("Rosa 1:", hasRosa1())
-        addCheckRow("Rosa 2:", hasRosa2())
-        addCheckRow("Rosa 3:", hasRosa3())
-        addCheckRow("Rengoku:", hasRengoku())
-        addCheckRow("Acidum Rifle:", hasAcidumRifle())
-        addMasteryRow("Dark Step V2:", hasDarkStepV2() and 300 or 0)
-        addMasteryRow("Sharkman Karate V2:", hasSharkmanV2() and 300 or 0)
-        addMasteryRow("Superhuman:", getSuperhumanMastery())
-        addMasteryRow("Dragon Breath:", getDragonBreathMastery())
+        local titulo4 = adicionarTexto(scroll, "🌊 SEGUNDO MAR", y, accentColor)
+        y = y + 30
+        adicionarTexto(scroll, "Nível: " .. getLevel(), y)
+        y = y + 25
+        adicionarCheck(scroll, "Rengoku:", hasItem("Rengoku"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Acidum Rifle:", hasItem("AcidumRifle"), y)
+        y = y + 25
+        adicionarMaestria(scroll, "Superhuman:", getMastery("Superhuman"), y)
+        y = y + 30
+        adicionarMaestria(scroll, "Dragon Breath:", getMastery("DragonBreath"), y)
+        y = y + 30
         
         -- Terceiro Mar
-        addSection("🌊 TERCEIRO MAR")
-        addInfoRow("Nível máximo atual:", getLevel())
-        addCheckRow("Mirror Fractal:", hasMirrorFractal())
-        addCheckRow("Shark Anchor:", hasSharkAnchor())
-        addCheckRow("Dark Dagger:", hasDarkDagger())
-        addCheckRow("Spikey Trident:", hasSpikeyTrident())
-        addCheckRow("Yama:", hasYama())
-        addCheckRow("Tushita:", hasTushita())
-        addCheckRow("Cursed Dual Katana:", hasCursedDualKatana())
-        addCheckRow("Soul Guitar:", hasSoulGuitar())
-        addCheckRow("Raça V4:", hasRaceV4())
-        addMasteryRow("Electric V2:", getElectricV2Mastery())
-        addMasteryRow("God Human:", getGodHumanMastery())
-        addMasteryRow("Sanguine Art:", getSanguineMastery())
-        addMasteryRow("Dragon Talon:", getDragonTalonMastery())
+        local titulo5 = adicionarTexto(scroll, "🌊 TERCEIRO MAR", y, accentColor)
+        y = y + 30
+        adicionarTexto(scroll, "Nível: " .. getLevel(), y)
+        y = y + 25
+        adicionarCheck(scroll, "Yama:", hasItem("Yama"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Tushita:", hasItem("Tushita"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Cursed Dual Katana:", hasItem("CursedDualKatana"), y)
+        y = y + 25
+        adicionarCheck(scroll, "Soul Guitar:", hasItem("SoulGuitar"), y)
+        y = y + 25
+        adicionarMaestria(scroll, "God Human:", getMastery("GodHuman"), y)
+        y = y + 30
+        adicionarMaestria(scroll, "Dragon Talon:", getMastery("DragonTalon"), y)
+        y = y + 30
         
-        -- Resumo Final (repetir status principais)
-        addSection("📊 RESUMO FINAL")
-        addCheckRow("Sabre + Shark Saw + Rengoku + Acidum Rifle", hasSabreUnlocked() and hasSharkSaw() and hasRengoku() and hasAcidumRifle())
-        addCheckRow("Todas as Rosas", hasRosa1() and hasRosa2() and hasRosa3())
-        addCheckRow("Todas as Katana (Yama, Tushita, Cursed)", hasYama() and hasTushita() and hasCursedDualKatana())
-        addCheckRow("Estilos de combate principais (Superhuman, God Human, Sanguine)", hasSuperhuman() and hasGodHuman() and hasSanguineArt())
-        addCheckRow("Haki completos (Armamento + Observação)", hasHakiArmamento() and hasHakiObservacao())
-        
-        -- Ajustar canvas size dinamicamente após preenchimento
-        task.wait()
-        local totalHeight = 0
-        for _, child in ipairs(scroll:GetChildren()) do
-            if child:IsA("Frame") or child:IsA("TextLabel") then
-                totalHeight = totalHeight + child.Size.Y.Offset + (layout.Padding.Offset or 8)
-            end
-        end
-        scroll.CanvasSize = UDim2.new(0, 0, 0, totalHeight + 50)
+        -- Ajustar canvas size
+        scroll.CanvasSize = UDim2.new(0, 0, 0, y + 50)
     end
     
     -- ========== LOOP DE ATUALIZAÇÃO ==========
-    local function atualizarDados()
-        if not isMainActive then return end
-        if currentScroll then
+    local function atualizarTudo()
+        if isMainActive and currentScroll then
             preencherScroll(currentScroll)
         end
     end
     
-    -- ========== ATIVAR ABA MAIN ==========
+    -- ========== ATIVAR/DESATIVAR ==========
     local function ativarMain()
         isMainActive = true
-        if updateConnection then updateConnection:Disconnect() end
-        updateConnection = RunService.Heartbeat:Connect(function()
-            -- Atualiza a cada ~1 segundo
-            wait(1)
-            if isMainActive then
-                atualizarDados()
-            end
-        end)
-        -- Cria o scroll se não existir
         if not currentScroll then
             currentScroll = criarScroll()
         end
         preencherScroll(currentScroll)
+        if updateConnection then updateConnection:Disconnect() end
+        updateConnection = RunService.Heartbeat:Connect(function()
+            wait(2)  -- atualiza a cada 2 segundos
+            if isMainActive then
+                atualizarTudo()
+            end
+        end)
         categoriaLabel.Text = "CATEGORIA : Main (Progresso)"
     end
     
-    -- ========== DESATIVAR ==========
     local function desativarMain()
         isMainActive = false
         if updateConnection then
@@ -1145,26 +820,19 @@ do
         end
     end
     
-    -- ========== CONECTAR AO BOTÃO MAIN ==========
-    -- Primeiro, precisamos interceptar o clique do botão MAIN sem perder o comportamento original de mudar o texto da categoria.
-    -- O script original já tem um evento que muda o texto. Vamos apenas adicionar o nosso.
-    -- Como o botão MAIN já tem um evento conectado (do complemento de atualizar categoria), vamos adicionar mais um.
+    -- Conectar ao botão Main
     btnMain.MouseButton1Click:Connect(function()
-        -- Se já estiver ativo, não recria
         if isMainActive then
-            -- apenas garante que o scroll está visível
-            if not currentScroll then
-                currentScroll = criarScroll()
-                preencherScroll(currentScroll)
-            end
+            -- Se já está ativo, recria (atualiza)
+            desativarMain()
+            ativarMain()
         else
-            desativarMain() -- limpa possível estado anterior
+            desativarMain()
             ativarMain()
         end
     end)
     
-    -- Inicialmente, se a aba Main estiver ativa por padrão? Por padrão o HUB já mostra a categoria "MAIN" (do script original), mas sem conteúdo. Vamos ativar ao iniciar.
-    -- Para não conflitar, esperamos um pouco e ativamos.
+    -- Inicializar
     task.wait(0.5)
     ativarMain()
 end
