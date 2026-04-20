@@ -1,0 +1,1173 @@
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+
+designed using localmaze gui creator
+]=]
+
+-- Instances: 35 | Scripts: 0 | Modules: 0 | Tags: 0
+local LMG2L = {};
+
+-- Players.TresNoControle.PlayerGui.ScreenGui
+LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB
+LMG2L["HUB_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
+LMG2L["HUB_2"]["BorderSizePixel"] = 0;
+LMG2L["HUB_2"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["HUB_2"]["Size"] = UDim2.new(0.51192, 0, 0.73159, 0);
+LMG2L["HUB_2"]["Position"] = UDim2.new(0.23877, 0, 0.04516, 0);
+LMG2L["HUB_2"]["Name"] = [[HUB]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.UICorner
+LMG2L["UICorner_3"] = Instance.new("UICorner", LMG2L["HUB_2"]);
+LMG2L["UICorner_3"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame
+LMG2L["Frame_4"] = Instance.new("Frame", LMG2L["HUB_2"]);
+LMG2L["Frame_4"]["BorderSizePixel"] = 0;
+LMG2L["Frame_4"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["Frame_4"]["Size"] = UDim2.new(0.97761, 0, 0.96296, 0);
+LMG2L["Frame_4"]["Position"] = UDim2.new(0.01119, 0, 0.01852, 0);
+LMG2L["Frame_4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.UICorner
+LMG2L["UICorner_5"] = Instance.new("UICorner", LMG2L["Frame_4"]);
+LMG2L["UICorner_5"]["CornerRadius"] = UDim.new(0, 17);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame
+LMG2L["Frame_6"] = Instance.new("Frame", LMG2L["Frame_4"]);
+LMG2L["Frame_6"]["BorderSizePixel"] = 0;
+LMG2L["Frame_6"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["Frame_6"]["Size"] = UDim2.new(0.9771, 0, 0.96154, 0);
+LMG2L["Frame_6"]["Position"] = UDim2.new(0.01145, 0, 0.01923, 0);
+LMG2L["Frame_6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2
+LMG2L["Frame2_7"] = Instance.new("Frame", LMG2L["Frame_6"]);
+LMG2L["Frame2_7"]["BorderSizePixel"] = 0;
+LMG2L["Frame2_7"]["BackgroundColor3"] = Color3.fromRGB(36, 52, 65);
+LMG2L["Frame2_7"]["Size"] = UDim2.new(0.27344, 0, 0.83333, 0);
+LMG2L["Frame2_7"]["Position"] = UDim2.new(0.02734, 0, 0.12667, 0);
+LMG2L["Frame2_7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["Frame2_7"]["Name"] = [[Frame2]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.RAIDS
+LMG2L["RAIDS_8"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["RAIDS_8"]["TextStrokeTransparency"] = 0;
+LMG2L["RAIDS_8"]["BorderSizePixel"] = 0;
+LMG2L["RAIDS_8"]["TextSize"] = 30;
+LMG2L["RAIDS_8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["RAIDS_8"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["RAIDS_8"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["RAIDS_8"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["RAIDS_8"]["Text"] = [[– Raids –]];
+LMG2L["RAIDS_8"]["Name"] = [[RAIDS]];
+LMG2L["RAIDS_8"]["Position"] = UDim2.new(0.02857, 0, 0.648, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.RAIDS.UICorner
+LMG2L["UICorner_9"] = Instance.new("UICorner", LMG2L["RAIDS_8"]);
+LMG2L["UICorner_9"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.CONFIG
+LMG2L["CONFIG_a"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["CONFIG_a"]["TextStrokeTransparency"] = 0;
+LMG2L["CONFIG_a"]["BorderSizePixel"] = 0;
+LMG2L["CONFIG_a"]["TextSize"] = 30;
+LMG2L["CONFIG_a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["CONFIG_a"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["CONFIG_a"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["CONFIG_a"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["CONFIG_a"]["Text"] = [[– Config –]];
+LMG2L["CONFIG_a"]["Name"] = [[CONFIG]];
+LMG2L["CONFIG_a"]["Position"] = UDim2.new(0.02857, 0, 0.808, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.CONFIG.UICorner
+LMG2L["UICorner_b"] = Instance.new("UICorner", LMG2L["CONFIG_a"]);
+LMG2L["UICorner_b"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.FRUITS
+LMG2L["FRUITS_c"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["FRUITS_c"]["TextStrokeTransparency"] = 0;
+LMG2L["FRUITS_c"]["BorderSizePixel"] = 0;
+LMG2L["FRUITS_c"]["TextSize"] = 30;
+LMG2L["FRUITS_c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["FRUITS_c"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["FRUITS_c"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["FRUITS_c"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["FRUITS_c"]["Text"] = [[– Fruits –]];
+LMG2L["FRUITS_c"]["Name"] = [[FRUITS]];
+LMG2L["FRUITS_c"]["Position"] = UDim2.new(0.02857, 0, 0.488, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.FRUITS.UICorner
+LMG2L["UICorner_d"] = Instance.new("UICorner", LMG2L["FRUITS_c"]);
+LMG2L["UICorner_d"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.MAIN
+LMG2L["MAIN_e"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["MAIN_e"]["TextStrokeTransparency"] = 0;
+LMG2L["MAIN_e"]["BorderSizePixel"] = 0;
+LMG2L["MAIN_e"]["TextSize"] = 30;
+LMG2L["MAIN_e"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["MAIN_e"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["MAIN_e"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["MAIN_e"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["MAIN_e"]["Text"] = [[– Main –]];
+LMG2L["MAIN_e"]["Name"] = [[MAIN]];
+LMG2L["MAIN_e"]["Position"] = UDim2.new(0.02857, 0, 0.024, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.MAIN.UICorner
+LMG2L["UICorner_f"] = Instance.new("UICorner", LMG2L["MAIN_e"]);
+LMG2L["UICorner_f"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.UICorner
+LMG2L["UICorner_10"] = Instance.new("UICorner", LMG2L["Frame2_7"]);
+LMG2L["UICorner_10"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.FARM
+LMG2L["FARM_11"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["FARM_11"]["TextStrokeTransparency"] = 0;
+LMG2L["FARM_11"]["BorderSizePixel"] = 0;
+LMG2L["FARM_11"]["TextSize"] = 30;
+LMG2L["FARM_11"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["FARM_11"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["FARM_11"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["FARM_11"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["FARM_11"]["Text"] = [[– Farm –]];
+LMG2L["FARM_11"]["Name"] = [[FARM]];
+LMG2L["FARM_11"]["Position"] = UDim2.new(0.02857, 0, 0.176, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.FARM.UICorner
+LMG2L["UICorner_12"] = Instance.new("UICorner", LMG2L["FARM_11"]);
+LMG2L["UICorner_12"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.QUEST
+LMG2L["QUEST_13"] = Instance.new("TextButton", LMG2L["Frame2_7"]);
+LMG2L["QUEST_13"]["TextStrokeTransparency"] = 0;
+LMG2L["QUEST_13"]["BorderSizePixel"] = 0;
+LMG2L["QUEST_13"]["TextSize"] = 30;
+LMG2L["QUEST_13"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["QUEST_13"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["QUEST_13"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["QUEST_13"]["Size"] = UDim2.new(0.94286, 0, 0.12, 0);
+LMG2L["QUEST_13"]["Text"] = [[– Quest –]];
+LMG2L["QUEST_13"]["Name"] = [[QUEST]];
+LMG2L["QUEST_13"]["Position"] = UDim2.new(0.02857, 0, 0.328, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame2.QUEST.UICorner
+LMG2L["UICorner_14"] = Instance.new("UICorner", LMG2L["QUEST_13"]);
+LMG2L["UICorner_14"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.TextBox
+LMG2L["TextBox_15"] = Instance.new("TextBox", LMG2L["Frame_6"]);
+LMG2L["TextBox_15"]["BorderSizePixel"] = 0;
+LMG2L["TextBox_15"]["TextSize"] = 35;
+LMG2L["TextBox_15"]["TextColor3"] = Color3.fromRGB(131, 205, 255);
+LMG2L["TextBox_15"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["TextBox_15"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["TextBox_15"]["Size"] = UDim2.new(0.32422, 0, 0.12, 0);
+LMG2L["TextBox_15"]["Position"] = UDim2.new(0.19141, 0, 0.00667, 0);
+LMG2L["TextBox_15"]["Text"] = [[ICE HUB🌨️  (Blox Fruits)]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.TextBox.UICorner
+LMG2L["UICorner_16"] = Instance.new("UICorner", LMG2L["TextBox_15"]);
+LMG2L["UICorner_16"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame3
+LMG2L["Frame3_17"] = Instance.new("Frame", LMG2L["Frame_6"]);
+LMG2L["Frame3_17"]["BorderSizePixel"] = 0;
+LMG2L["Frame3_17"]["BackgroundColor3"] = Color3.fromRGB(36, 52, 65);
+LMG2L["Frame3_17"]["Size"] = UDim2.new(0.66016, 0, 0.83333, 0);
+LMG2L["Frame3_17"]["Position"] = UDim2.new(0.31641, 0, 0.12667, 0);
+LMG2L["Frame3_17"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["Frame3_17"]["Name"] = [[Frame3]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame3.TextBox
+LMG2L["TextBox_18"] = Instance.new("TextBox", LMG2L["Frame3_17"]);
+LMG2L["TextBox_18"]["TextStrokeTransparency"] = 0;
+LMG2L["TextBox_18"]["BorderSizePixel"] = 0;
+LMG2L["TextBox_18"]["TextSize"] = 25;
+LMG2L["TextBox_18"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextBox_18"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["TextBox_18"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["TextBox_18"]["Size"] = UDim2.new(0.94675, 0, 0.12, 0);
+LMG2L["TextBox_18"]["Position"] = UDim2.new(0.02959, 0, 0.032, 0);
+LMG2L["TextBox_18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["TextBox_18"]["Text"] = [[CATEGORIA : ]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame3.TextBox.UICorner
+LMG2L["UICorner_19"] = Instance.new("UICorner", LMG2L["TextBox_18"]);
+
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.Frame3.UICorner
+LMG2L["UICorner_1a"] = Instance.new("UICorner", LMG2L["Frame3_17"]);
+LMG2L["UICorner_1a"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.TextButton
+LMG2L["TextButton_1b"] = Instance.new("TextButton", LMG2L["Frame_6"]);
+LMG2L["TextButton_1b"]["TextWrapped"] = true;
+LMG2L["TextButton_1b"]["BorderSizePixel"] = 0;
+LMG2L["TextButton_1b"]["TextStrokeColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextButton_1b"]["TextSize"] = 22;
+LMG2L["TextButton_1b"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["TextButton_1b"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["TextButton_1b"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["TextButton_1b"]["Size"] = UDim2.new(0.0625, 0, 0.1, 0);
+LMG2L["TextButton_1b"]["Text"] = [[➖]];
+LMG2L["TextButton_1b"]["Position"] = UDim2.new(0.92578, 0, 0.02, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.TextButton.UICorner
+LMG2L["UICorner_1c"] = Instance.new("UICorner", LMG2L["TextButton_1b"]);
+
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.HUB.Frame.Frame.UICorner
+LMG2L["UICorner_1d"] = Instance.new("UICorner", LMG2L["Frame_6"]);
+LMG2L["UICorner_1d"]["CornerRadius"] = UDim.new(0, 15);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO
+LMG2L["BOTAO_1e"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
+LMG2L["BOTAO_1e"]["BorderSizePixel"] = 0;
+LMG2L["BOTAO_1e"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["BOTAO_1e"]["Size"] = UDim2.new(0.05157, 0, 0.12193, 0);
+LMG2L["BOTAO_1e"]["Position"] = UDim2.new(0.31899, 0, -0.09935, 0);
+LMG2L["BOTAO_1e"]["Name"] = [[BOTAO]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO.UICorner
+LMG2L["UICorner_1f"] = Instance.new("UICorner", LMG2L["BOTAO_1e"]);
+LMG2L["UICorner_1f"]["CornerRadius"] = UDim.new(0, 30);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO.Armação
+LMG2L["Armação_20"] = Instance.new("Frame", LMG2L["BOTAO_1e"]);
+LMG2L["Armação_20"]["BorderSizePixel"] = 0;
+LMG2L["Armação_20"]["BackgroundColor3"] = Color3.fromRGB(140, 205, 255);
+LMG2L["Armação_20"]["Size"] = UDim2.new(0.85185, 0, 0.85185, 0);
+LMG2L["Armação_20"]["Position"] = UDim2.new(0.07407, 0, 0.07407, 0);
+LMG2L["Armação_20"]["Name"] = [[Armação]];
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO.Armação.UICorner
+LMG2L["UICorner_21"] = Instance.new("UICorner", LMG2L["Armação_20"]);
+LMG2L["UICorner_21"]["CornerRadius"] = UDim.new(0, 25);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO.TextButton
+LMG2L["TextButton_22"] = Instance.new("TextButton", LMG2L["BOTAO_1e"]);
+LMG2L["TextButton_22"]["BorderSizePixel"] = 0;
+LMG2L["TextButton_22"]["TextSize"] = 20;
+LMG2L["TextButton_22"]["TextColor3"] = Color3.fromRGB(28, 43, 54);
+LMG2L["TextButton_22"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["TextButton_22"]["Size"] = UDim2.new(0.7037, 0, 0.7037, 0);
+LMG2L["TextButton_22"]["Text"] = [[🌨️]];
+LMG2L["TextButton_22"]["Position"] = UDim2.new(0.14815, 0, 0.14815, 0);
+
+
+-- Players.TresNoControle.PlayerGui.ScreenGui.BOTAO.TextButton.UICorner
+LMG2L["UICorner_23"] = Instance.new("UICorner", LMG2L["TextButton_22"]);
+LMG2L["UICorner_23"]["CornerRadius"] = UDim.new(0, 28);
+
+-- =====================================================
+-- COMPLEMENTO ANIMADO COM ESCALA CENTRALIZADA (CORRIGIDO)
+-- =====================================================
+do
+    local TweenService = game:GetService("TweenService")
+    local hub = LMG2L["HUB_2"]
+    local botaoFrame = LMG2L["BOTAO_1e"]
+    local btnMinimizar = LMG2L["TextButton_1b"]
+    local btnFloco = LMG2L["TextButton_22"]
+    
+    -- Ajustar AnchorPoint para centralizar a escala, mantendo a posição visual
+    local function centralizarElemento(elemento, posicaoOriginalUDim2)
+        local originalPosition = posicaoOriginalUDim2 or elemento.Position
+        elemento.AnchorPoint = Vector2.new(0.5, 0.5)
+        task.wait()
+        local absSize = elemento.AbsoluteSize
+        local screenSize = elemento.Parent.AbsoluteSize
+        local offsetX = (absSize.X / 2) / screenSize.X
+        local offsetY = (absSize.Y / 2) / screenSize.Y
+        elemento.Position = UDim2.new(originalPosition.X.Scale + offsetX, originalPosition.X.Offset, originalPosition.Y.Scale + offsetY, originalPosition.Y.Offset)
+    end
+    
+    -- Guardar posições originais
+    local hubPosOriginal = hub.Position
+    local botaoPosOriginal = botaoFrame.Position
+    
+    -- Centralizar HUB e botão
+    centralizarElemento(hub, hubPosOriginal)
+    centralizarElemento(botaoFrame, botaoPosOriginal)
+    
+    -- Adicionar UIScale
+    local hubScale = Instance.new("UIScale")
+    hubScale.Parent = hub
+    local botaoScale = Instance.new("UIScale")
+    botaoScale.Parent = botaoFrame
+    
+    -- Estado inicial: HUB visível (scale 1), botão invisível (scale 0)
+    hubScale.Scale = 1
+    botaoScale.Scale = 0
+    botaoFrame.Visible = false
+    
+    local ANIM_TIME = 0.25
+    
+    -- Função para encolher até sumir
+    local function shrinkAndHide(element, scaleObject, targetScale)
+        local tween = TweenService:Create(scaleObject, TweenInfo.new(ANIM_TIME, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = targetScale})
+        tween:Play()
+        tween.Completed:Connect(function()
+            if targetScale == 0 then
+                element.Visible = false
+            end
+        end)
+    end
+    
+    -- Função para crescer a partir do zero
+    local function growAndShow(element, scaleObject)
+        element.Visible = true
+        scaleObject.Scale = 0
+        local tween = TweenService:Create(scaleObject, TweenInfo.new(ANIM_TIME, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Scale = 1})
+        tween:Play()
+    end
+    
+    -- Minimizar HUB: encolher e esconder (agora sem definir hub.Visible manualmente)
+    btnMinimizar.MouseButton1Click:Connect(function()
+        if hub.Visible then
+            shrinkAndHide(hub, hubScale, 0)
+            -- O tween define hub.Visible = false ao terminar
+            -- Mostrar botão floco apenas depois que o HUB sumir completamente
+            task.wait(ANIM_TIME)  -- aguarda o término da animação do hub
+            if not hub.Visible then
+                growAndShow(botaoFrame, botaoScale)
+            end
+        end
+    end)
+    
+    -- Abrir HUB: encolher botão e depois crescer HUB
+    btnFloco.MouseButton1Click:Connect(function()
+        if not hub.Visible then
+            -- Esconder botão com encolhimento
+            shrinkAndHide(botaoFrame, botaoScale, 0)
+            task.wait(ANIM_TIME)  -- espera o botão sumir
+            if not botaoFrame.Visible then
+                growAndShow(hub, hubScale)
+            end
+        end
+    end)
+    
+    -- ========== HOVER EFFECTS (mantidos) ==========
+    local function addHoverEffect(button, scaleFactor, originalColor)
+        if not button then return end
+        local originalScale = button.Size
+        local originalColor3 = originalColor or button.BackgroundColor3
+        button.MouseEnter:Connect(function()
+            local tween = TweenService:Create(button, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 
+                {Size = UDim2.new(originalScale.X.Scale * scaleFactor, originalScale.X.Offset, originalScale.Y.Scale * scaleFactor, originalScale.Y.Offset)})
+            tween:Play()
+            if originalColor then
+                local colorTween = TweenService:Create(button, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(180, 230, 255)})
+                colorTween:Play()
+            end
+        end)
+        button.MouseLeave:Connect(function()
+            local tween = TweenService:Create(button, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = originalScale})
+            tween:Play()
+            if originalColor then
+                local colorTween = TweenService:Create(button, TweenInfo.new(0.15), {BackgroundColor3 = originalColor3})
+                colorTween:Play()
+            end
+        end)
+    end
+    
+    local menuButtons = {LMG2L["MAIN_e"], LMG2L["FARM_11"], LMG2L["QUEST_13"], LMG2L["FRUITS_c"], LMG2L["RAIDS_8"], LMG2L["CONFIG_a"]}
+    for _, btn in ipairs(menuButtons) do
+        addHoverEffect(btn, 1.02, btn.BackgroundColor3)
+    end
+    addHoverEffect(btnMinimizar, 1.1, btnMinimizar.BackgroundColor3)
+    addHoverEffect(btnFloco, 1.1, btnFloco.BackgroundColor3)
+end
+
+-- =====================================================
+-- COMPLEMENTO: CONVERTER TEXTOS EM LABELS (NÃO EDITÁVEIS)
+-- =====================================================
+do
+    local function transformarEmLabel(textBox, novoTexto)
+        local parent = textBox.Parent
+        local pos = textBox.Position
+        local size = textBox.Size
+        local bgColor = textBox.BackgroundColor3
+        local textColor = textBox.TextColor3
+        local font = textBox.FontFace
+        local textSize = textBox.TextSize
+        local cornerRadius = nil
+        for _, child in ipairs(textBox:GetChildren()) do
+            if child:IsA("UICorner") then
+                cornerRadius = child.CornerRadius
+                child:Destroy()
+                break
+            end
+        end
+        
+        -- Criar TextLabel com as mesmas propriedades
+        local label = Instance.new("TextLabel")
+        label.Parent = parent
+        label.Position = pos
+        label.Size = size
+        label.BackgroundColor3 = bgColor
+        label.TextColor3 = textColor
+        label.FontFace = font
+        label.TextSize = textSize
+        label.Text = novoTexto or textBox.Text
+        label.BackgroundTransparency = textBox.BackgroundTransparency
+        label.BorderSizePixel = textBox.BorderSizePixel
+        label.TextStrokeTransparency = textBox.TextStrokeTransparency
+        label.TextWrapped = textBox.TextWrapped
+        label.TextXAlignment = Enum.TextXAlignment.Center
+        label.TextYAlignment = Enum.TextYAlignment.Center
+        
+        -- Recriar o UICorner se existia
+        if cornerRadius then
+            local newCorner = Instance.new("UICorner")
+            newCorner.CornerRadius = cornerRadius
+            newCorner.Parent = label
+        end
+        
+        -- Remover o TextBox original
+        textBox:Destroy()
+        
+        -- Atualizar referência no LMG2L
+        if textBox == LMG2L["TextBox_15"] then
+            LMG2L["TextBox_15"] = label
+        elseif textBox == LMG2L["TextBox_18"] then
+            LMG2L["TextBox_18"] = label
+        end
+    end
+    
+    -- Aplicar transformação
+    transformarEmLabel(LMG2L["TextBox_15"], "ICE HUB🌨️  (Blox Fruits)")
+    transformarEmLabel(LMG2L["TextBox_18"], "CATEGORIA :")
+end
+
+-- =====================================================
+-- COMPLEMENTO: ATUALIZAR CATEGORIA AO CLICAR NOS BOTÕES
+-- =====================================================
+do
+    local categoriaLabel = LMG2L["TextBox_18"]  -- agora é um TextLabel
+    local botoes = {
+        [LMG2L["MAIN_e"]] = "Main",
+        [LMG2L["FARM_11"]] = "Farm",
+        [LMG2L["QUEST_13"]] = "Quest",
+        [LMG2L["FRUITS_c"]] = "Fruits",
+        [LMG2L["RAIDS_8"]] = "Raids",
+        [LMG2L["CONFIG_a"]] = "Config"
+    }
+    
+    for botao, nome in pairs(botoes) do
+        botao.MouseButton1Click:Connect(function()
+            categoriaLabel.Text = "CATEGORIA : " .. nome
+        end)
+    end
+end
+-- =====================================================
+
+-- =====================================================
+-- COMPLEMENTO: SISTEMA DE PROGRESSO NA ABA "MAIN"
+-- =====================================================
+do
+    local TweenService = game:GetService("TweenService")
+    local RunService = game:GetService("RunService")
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+    local frame3 = LMG2L["Frame3_17"]  -- painel direito onde o conteúdo aparece
+    local btnMain = LMG2L["MAIN_e"]    -- botão "– Main –"
+    local categoriaLabel = LMG2L["TextBox_18"]  -- label "CATEGORIA :"
+    
+    -- Variáveis de controle
+    local currentScroll = nil
+    local updateConnection = nil
+    local isMainActive = false
+    
+    -- Cores do tema (para manter estética)
+    local bgColor = Color3.fromRGB(36, 52, 65)
+    local textColor = Color3.fromRGB(255, 255, 255)
+    local accentColor = Color3.fromRGB(140, 205, 255)
+    local font = Font.new("rbxasset://fonts/families/FredokaOne.json")
+    
+    -- ========== FUNÇÕES DE DETECÇÃO (BLOX FRUITS) ==========
+    -- Nota: Essas funções tentam acessar as instâncias comuns do jogo.
+    -- Caso algo não exista, retorna valores padrão.
+    
+    local function getLeaderstat(statName)
+        local leaderstats = player:FindFirstChild("leaderstats")
+        if leaderstats then
+            local stat = leaderstats:FindFirstChild(statName)
+            if stat and stat:IsA("NumberValue") then
+                return stat.Value
+            end
+        end
+        return 0
+    end
+    
+    local function getLevel()
+        return getLeaderstat("Level") or getLeaderstat("Nivel") or 0
+    end
+    
+    local function getMoney()
+        return getLeaderstat("Money") or getLeaderstat("Belí") or 0
+    end
+    
+    local function getFragments()
+        return getLeaderstat("Fragments") or getLeaderstat("Frag") or 0
+    end
+    
+    local function getBones()
+        local bones = player:FindFirstChild("Bones") or (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Bones"))
+        if bones and bones:IsA("NumberValue") then
+            return bones.Value
+        end
+        return 0
+    end
+    
+    local function getEctoplasm()
+        local ecto = player:FindFirstChild("Ectoplasm") or (player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Ectoplasm"))
+        if ecto and ecto:IsA("NumberValue") then
+            return ecto.Value
+        end
+        return 0
+    end
+    
+    local function getEquippedFruit()
+        local fruit = player:FindFirstChild("EquippedFruit") or (player.Character and player.Character:FindFirstChild("Fruit"))
+        if fruit then
+            return fruit.Name:gsub("Fruit", "")
+        end
+        return "Nenhuma"
+    end
+    
+    local function getRace()
+        -- Raça geralmente está em um valor "Race" ou no Character
+        local race = player:FindFirstChild("Race") or (player.Character and player.Character:FindFirstChild("Race"))
+        if race and race:IsA("StringValue") then
+            return race.Value
+        end
+        return "Humano"
+    end
+    
+    local function getSea()
+        -- Detecta o mar baseado no nível ou em uma variável "Sea"
+        local level = getLevel()
+        if level < 700 then return "Primeiro Mar"
+        elseif level < 1500 then return "Segundo Mar"
+        else return "Terceiro Mar"
+        end
+    end
+    
+    -- Funções genéricas para verificar se o jogador possui um item (tool, habilidade, etc.)
+    local function hasItem(itemName)
+        -- Procura no Backpack, no Character ou no PlayerGui
+        local backpack = player:FindFirstChild("Backpack")
+        if backpack and backpack:FindFirstChild(itemName) then return true end
+        local char = player.Character
+        if char and char:FindFirstChild(itemName) then return true end
+        -- Também pode ser um BoolValue em Player: "Unlocked" + itemName
+        local unlocked = player:FindFirstChild("Unlocked" .. itemName)
+        if unlocked and unlocked:IsA("BoolValue") and unlocked.Value then return true end
+        return false
+    end
+    
+    local function getMastery(styleName)
+        -- Tenta achar o valor de maestria para um estilo (geralmente em um NumberValue dentro do jogador)
+        local mastery = player:FindFirstChild(styleName .. "Mastery") or (player:FindFirstChild("Mastery") and player.Mastery:FindFirstChild(styleName))
+        if mastery and mastery:IsA("NumberValue") then
+            return mastery.Value
+        end
+        return 0
+    end
+    
+    -- Funções específicas para cada informação (simplificadas, mas expansíveis)
+    local function isSabreUnlocked() return hasItem("Sabre") or getMastery("Sabre") > 0 end
+    local function hasSharkSaw() return hasItem("SharkSaw") end
+    local function hasHakiArmamento() return hasItem("Busoshoku") or player:FindFirstChild("Busoshoku") ~= nil end
+    local function hasHakiObservacao() return hasItem("Kenbunshoku") or player:FindFirstChild("Kenbunshoku") ~= nil end
+    local function hasSoru() return hasItem("Soru") or player:FindFirstChild("Soru") ~= nil end
+    local function hasDoubleJump() return hasItem("DoubleJump") or player:FindFirstChild("DoubleJump") ~= nil end
+    
+    -- Estilos V1
+    local function hasElectricV1() return getMastery("Electric") > 0 end
+    local function getElectricMastery() return getMastery("Electric") end
+    local function hasDarkStepV1() return getMastery("DarkStep") > 0 end
+    local function getDarkStepMastery() return getMastery("DarkStep") end
+    local function hasSharkmanV1() return getMastery("SharkmanKarate") > 0 end
+    local function getSharkmanMastery() return getMastery("SharkmanKarate") end
+    
+    -- V2 e avançados
+    local function hasDarkStepV2() return getMastery("DarkStepV2") > 0 or (hasDarkStepV1() and getDarkStepMastery() >= 300) end
+    local function hasSharkmanV2() return getMastery("SharkmanKarateV2") > 0 end
+    local function hasSuperhuman() return getMastery("Superhuman") > 0 end
+    local function getSuperhumanMastery() return getMastery("Superhuman") end
+    local function hasDragonBreath() return getMastery("DragonBreath") > 0 end
+    local function getDragonBreathMastery() return getMastery("DragonBreath") end
+    local function hasElectricV2() return getMastery("ElectricV2") > 0 end
+    local function getElectricV2Mastery() return getMastery("ElectricV2") end
+    local function hasGodHuman() return getMastery("GodHuman") > 0 end
+    local function getGodHumanMastery() return getMastery("GodHuman") end
+    local function hasSanguineArt() return getMastery("SanguineArt") > 0 end
+    local function getSanguineMastery() return getMastery("SanguineArt") end
+    local function hasDragonTalon() return getMastery("DragonTalon") > 0 end
+    local function getDragonTalonMastery() return getMastery("DragonTalon") end
+    
+    -- Itens do segundo mar
+    local function hasRosa1() return hasItem("Rosa1") end
+    local function hasRosa2() return hasItem("Rosa2") end
+    local function hasRosa3() return hasItem("Rosa3") end
+    local function hasRengoku() return hasItem("Rengoku") end
+    local function hasAcidumRifle() return hasItem("AcidumRifle") end
+    
+    -- Itens terceiro mar
+    local function hasMirrorFractal() return hasItem("MirrorFractal") end
+    local function hasSharkAnchor() return hasItem("SharkAnchor") end
+    local function hasDarkDagger() return hasItem("DarkDagger") end
+    local function hasSpikeyTrident() return hasItem("SpikeyTrident") end
+    local function hasYama() return hasItem("Yama") end
+    local function hasTushita() return hasItem("Tushita") end
+    local function hasCursedDualKatana() return hasItem("CursedDualKatana") end
+    local function hasSoulGuitar() return hasItem("SoulGuitar") end
+    
+    -- Raça V4
+    local function hasRaceV4() return player:FindFirstChild("RaceV4") ~= nil and player.RaceV4.Value == true end
+    
+    -- Progresso de missões (exemplo simplificado)
+    local function isDoflamingoDone() return getLeaderstat("Doflamingo") == 1 end
+    local function isColiseumDone() return getLeaderstat("Coliseum") == 1 end
+    
+    -- Servidor: bosses (detecta se existe no workspace)
+    local function isWhitebeardSpawned()
+        return workspace:FindFirstChild("Whitebeard") ~= nil or workspace:FindFirstChild("WhitebeardBoss") ~= nil
+    end
+    local function isSawSpawned()
+        return workspace:FindFirstChild("Saw") ~= nil
+    end
+    local function isDoflamingoBossSpawned()
+        return workspace:FindFirstChild("Doflamingo") ~= nil
+    end
+    local function isIceAdmiralSpawned()
+        return workspace:FindFirstChild("IceAdmiral") ~= nil
+    end
+    local function isCursedCaptainShipSpawned()
+        return workspace:FindFirstChild("CursedCaptainShip") ~= nil
+    end
+    local function isJeremySpawned()
+        return workspace:FindFirstChild("Jeremy") ~= nil
+    end
+    local function isFactorySpawned()
+        return workspace:FindFirstChild("Factory") ~= nil
+    end
+    local function getCurrentMoon()
+        -- Simulação: puxar de um valor global "MoonPhase"
+        local moon = game:GetService("Lighting"):FindFirstChild("MoonPhase")
+        if moon and moon:IsA("NumberValue") then
+            return moon.Value .. "/8"
+        end
+        return "?"
+    end
+    local function isFullMoon()
+        return getCurrentMoon() == "8/8"
+    end
+    local function isRipIndraSpawned()
+        return workspace:FindFirstChild("RipIndra") ~= nil
+    end
+    local function isKatakuriV1Spawned()
+        return workspace:FindFirstChild("Katakuri") ~= nil
+    end
+    local function isKatakuriV2Spawned()
+        return workspace:FindFirstChild("KatakuriV2") ~= nil
+    end
+    local function isCursedCaptainScytheSpawned()
+        return workspace:FindFirstChild("CursedCaptainScythe") ~= nil
+    end
+    local function isEliteBossSpawned()
+        return workspace:FindFirstChild("EliteBoss") ~= nil
+    end
+    local function isPirateRaidSpawned()
+        return workspace:FindFirstChild("PirateRaid") ~= nil
+    end
+    
+    -- ========== CRIAÇÃO DA INTERFACE DENTRO DO SCROLL ==========
+    local function criarSecao(parent, titulo, yPos)
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0.95, 0, 0, 30)
+        frame.Position = UDim2.new(0.025, 0, yPos, 0)
+        frame.BackgroundColor3 = accentColor
+        frame.BorderSizePixel = 0
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = frame
+        
+        local label = Instance.new("TextLabel")
+        label.Size = UDim2.new(1, 0, 1, 0)
+        label.BackgroundTransparency = 1
+        label.Text = titulo
+        label.TextColor3 = Color3.fromRGB(0,0,0)
+        label.FontFace = font
+        label.TextSize = 18
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.Padding = UDim.new(0, 10)
+        label.Parent = frame
+        
+        frame.Parent = parent
+        return frame
+    end
+    
+    local function criarLinhaInfo(parent, texto, valor, yPos, corValor)
+        local linha = Instance.new("Frame")
+        linha.Size = UDim2.new(0.95, 0, 0, 25)
+        linha.Position = UDim2.new(0.025, 0, yPos, 0)
+        linha.BackgroundTransparency = 1
+        linha.Parent = parent
+        
+        local txtLabel = Instance.new("TextLabel")
+        txtLabel.Size = UDim2.new(0.5, 0, 1, 0)
+        txtLabel.Position = UDim2.new(0, 0, 0, 0)
+        txtLabel.BackgroundTransparency = 1
+        txtLabel.Text = texto
+        txtLabel.TextColor3 = textColor
+        txtLabel.FontFace = font
+        txtLabel.TextSize = 16
+        txtLabel.TextXAlignment = Enum.TextXAlignment.Left
+        txtLabel.Parent = linha
+        
+        local valLabel = Instance.new("TextLabel")
+        valLabel.Size = UDim2.new(0.4, 0, 1, 0)
+        valLabel.Position = UDim2.new(0.55, 0, 0, 0)
+        valLabel.BackgroundTransparency = 1
+        valLabel.Text = tostring(valor)
+        valLabel.TextColor3 = corValor or accentColor
+        valLabel.FontFace = font
+        valLabel.TextSize = 16
+        valLabel.TextXAlignment = Enum.TextXAlignment.Left
+        valLabel.Parent = linha
+        
+        return {txtLabel, valLabel}
+    end
+    
+    local function criarCheckbox(parent, texto, status, yPos)
+        local linha = Instance.new("Frame")
+        linha.Size = UDim2.new(0.95, 0, 0, 25)
+        linha.Position = UDim2.new(0.025, 0, yPos, 0)
+        linha.BackgroundTransparency = 1
+        linha.Parent = parent
+        
+        local txt = Instance.new("TextLabel")
+        txt.Size = UDim2.new(0.7, 0, 1, 0)
+        txt.Position = UDim2.new(0, 0, 0, 0)
+        txt.BackgroundTransparency = 1
+        txt.Text = texto
+        txt.TextColor3 = textColor
+        txt.FontFace = font
+        txt.TextSize = 16
+        txt.TextXAlignment = Enum.TextXAlignment.Left
+        txt.Parent = linha
+        
+        local check = Instance.new("TextLabel")
+        check.Size = UDim2.new(0.15, 0, 1, 0)
+        check.Position = UDim2.new(0.8, 0, 0, 0)
+        check.BackgroundTransparency = 1
+        check.Text = status and "✔" or "✖"
+        check.TextColor3 = status and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+        check.FontFace = font
+        check.TextSize = 18
+        check.TextXAlignment = Enum.TextXAlignment.Center
+        check.Parent = linha
+        
+        return check
+    end
+    
+    local function criarProgressoMaestria(parent, texto, mastery, yPos)
+        local linha = Instance.new("Frame")
+        linha.Size = UDim2.new(0.95, 0, 0, 30)
+        linha.Position = UDim2.new(0.025, 0, yPos, 0)
+        linha.BackgroundTransparency = 1
+        linha.Parent = parent
+        
+        local txt = Instance.new("TextLabel")
+        txt.Size = UDim2.new(0.5, 0, 1, 0)
+        txt.Position = UDim2.new(0, 0, 0, 0)
+        txt.BackgroundTransparency = 1
+        txt.Text = texto
+        txt.TextColor3 = textColor
+        txt.FontFace = font
+        txt.TextSize = 16
+        txt.TextXAlignment = Enum.TextXAlignment.Left
+        txt.Parent = linha
+        
+        local masteryLabel = Instance.new("TextLabel")
+        masteryLabel.Size = UDim2.new(0.2, 0, 1, 0)
+        masteryLabel.Position = UDim2.new(0.55, 0, 0, 0)
+        masteryLabel.BackgroundTransparency = 1
+        masteryLabel.Text = mastery .. " / 600"
+        masteryLabel.TextColor3 = accentColor
+        masteryLabel.FontFace = font
+        masteryLabel.TextSize = 14
+        masteryLabel.Parent = linha
+        
+        local check = Instance.new("TextLabel")
+        check.Size = UDim2.new(0.1, 0, 1, 0)
+        check.Position = UDim2.new(0.85, 0, 0, 0)
+        check.BackgroundTransparency = 1
+        check.Text = (mastery > 0) and "✔" or "✖"
+        check.TextColor3 = (mastery > 0) and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+        check.FontFace = font
+        check.TextSize = 18
+        check.Parent = linha
+        
+        return check
+    end
+    
+    -- ========== CRIAÇÃO DO SCROLLING FRAME PRINCIPAL ==========
+
+    local function criarScroll()
+        if currentScroll then
+            currentScroll:Destroy()
+            currentScroll = nil
+        end
+        local scroll = Instance.new("ScrollingFrame")
+        scroll.Size = UDim2.new(1, 0, 1, 0)
+        scroll.BackgroundTransparency = 1
+        scroll.CanvasSize = UDim2.new(0, 0, 0, 2000)  -- altura dinâmica será ajustada depois
+        scroll.ScrollBarThickness = 8
+        scroll.ScrollBarImageColor3 = accentColor
+        scroll.Parent = frame3
+        
+        -- Layout automático para organizar os elementos (opcional)
+        local layout = Instance.new("UIListLayout")
+        layout.Padding = UDim.new(0, 8)
+        layout.SortOrder = Enum.SortOrder.LayoutOrder
+        layout.Parent = scroll
+        
+        return scroll
+    end
+    
+    local function preencherScroll(scroll)
+        -- Limpa conteúdo anterior (já que o scroll é novo)
+        for _, v in pairs(scroll:GetChildren()) do
+            if v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("UIListLayout") then
+                -- Mantém apenas o layout
+                if not v:IsA("UIListLayout") then v:Destroy() end
+            end
+        end
+        
+        local layout = scroll:FindFirstChildWhichIsA("UIListLayout")
+        if not layout then
+            layout = Instance.new("UIListLayout")
+            layout.Padding = UDim.new(0, 8)
+            layout.Parent = scroll
+        end
+        
+        -- Vamos criar seções usando frames com layout order
+        local function addSection(title)
+            local sec = Instance.new("Frame")
+            sec.Size = UDim2.new(0.95, 0, 0, 35)
+            sec.BackgroundColor3 = accentColor
+            sec.BorderSizePixel = 0
+            local corner = Instance.new("UICorner")
+            corner.CornerRadius = UDim.new(0, 8)
+            corner.Parent = sec
+            local lbl = Instance.new("TextLabel")
+            lbl.Size = UDim2.new(1, 0, 1, 0)
+            lbl.BackgroundTransparency = 1
+            lbl.Text = title
+            lbl.TextColor3 = Color3.fromRGB(0,0,0)
+            lbl.FontFace = font
+            lbl.TextSize = 18
+            lbl.TextXAlignment = Enum.TextXAlignment.Left
+            lbl.Padding = UDim.new(0, 10)
+            lbl.Parent = sec
+            sec.Parent = scroll
+            layout:Insert(-1, sec)
+            return sec
+        end
+        
+        local function addInfoRow(label, value)
+            local row = Instance.new("Frame")
+            row.Size = UDim2.new(0.95, 0, 0, 25)
+            row.BackgroundTransparency = 1
+            local lbl = Instance.new("TextLabel")
+            lbl.Size = UDim2.new(0.5, 0, 1, 0)
+            lbl.BackgroundTransparency = 1
+            lbl.Text = label
+            lbl.TextColor3 = textColor
+            lbl.FontFace = font
+            lbl.TextSize = 16
+            lbl.TextXAlignment = Enum.TextXAlignment.Left
+            lbl.Parent = row
+            local val = Instance.new("TextLabel")
+            val.Size = UDim2.new(0.4, 0, 1, 0)
+            val.Position = UDim2.new(0.55, 0, 0, 0)
+            val.BackgroundTransparency = 1
+            val.Text = tostring(value)
+            val.TextColor3 = accentColor
+            val.FontFace = font
+            val.TextSize = 16
+            val.TextXAlignment = Enum.TextXAlignment.Left
+            val.Parent = row
+            row.Parent = scroll
+            layout:Insert(-1, row)
+            return val
+        end
+        
+        local function addCheckRow(label, status)
+            local row = Instance.new("Frame")
+            row.Size = UDim2.new(0.95, 0, 0, 25)
+            row.BackgroundTransparency = 1
+            local lbl = Instance.new("TextLabel")
+            lbl.Size = UDim2.new(0.7, 0, 1, 0)
+            lbl.BackgroundTransparency = 1
+            lbl.Text = label
+            lbl.TextColor3 = textColor
+            lbl.FontFace = font
+            lbl.TextSize = 16
+            lbl.TextXAlignment = Enum.TextXAlignment.Left
+            lbl.Parent = row
+            local check = Instance.new("TextLabel")
+            check.Size = UDim2.new(0.1, 0, 1, 0)
+            check.Position = UDim2.new(0.8, 0, 0, 0)
+            check.BackgroundTransparency = 1
+            check.Text = status and "✔" or "✖"
+            check.TextColor3 = status and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+            check.FontFace = font
+            check.TextSize = 18
+            check.Parent = row
+            row.Parent = scroll
+            layout:Insert(-1, row)
+            return check
+        end
+        
+        local function addMasteryRow(label, mastery)
+            local row = Instance.new("Frame")
+            row.Size = UDim2.new(0.95, 0, 0, 30)
+            row.BackgroundTransparency = 1
+            local lbl = Instance.new("TextLabel")
+            lbl.Size = UDim2.new(0.5, 0, 1, 0)
+            lbl.BackgroundTransparency = 1
+            lbl.Text = label
+            lbl.TextColor3 = textColor
+            lbl.FontFace = font
+            lbl.TextSize = 16
+            lbl.TextXAlignment = Enum.TextXAlignment.Left
+            lbl.Parent = row
+            local masteryLbl = Instance.new("TextLabel")
+            masteryLbl.Size = UDim2.new(0.2, 0, 1, 0)
+            masteryLbl.Position = UDim2.new(0.55, 0, 0, 0)
+            masteryLbl.BackgroundTransparency = 1
+            masteryLbl.Text = mastery .. " / 600"
+            masteryLbl.TextColor3 = accentColor
+            masteryLbl.FontFace = font
+            masteryLbl.TextSize = 14
+            masteryLbl.Parent = row
+            local check = Instance.new("TextLabel")
+            check.Size = UDim2.new(0.1, 0, 1, 0)
+            check.Position = UDim2.new(0.85, 0, 0, 0)
+            check.BackgroundTransparency = 1
+            check.Text = (mastery > 0) and "✔" or "✖"
+            check.TextColor3 = (mastery > 0) and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+            check.FontFace = font
+            check.TextSize = 18
+            check.Parent = row
+            row.Parent = scroll
+            layout:Insert(-1, row)
+            return {check, masteryLbl}
+        end
+        
+        -- ========== PREENCHER DADOS (usando as funções de detecção) ==========
+        -- Seção Informações Iniciais
+        addSection("📌 INFORMAÇÕES INICIAIS")
+        addInfoRow("Mar atual:", getSea())
+        addInfoRow("Dinheiro:", "$" .. getMoney())
+        addInfoRow("Fragmentos:", getFragments())
+        addInfoRow("Ossos (Bones):", getBones())
+        addInfoRow("Ectoplasmas:", getEctoplasm())
+        addInfoRow("Fruta equipada:", getEquippedFruit())
+        addInfoRow("Raça:", getRace())
+        
+        -- Seção Servidor
+        addSection("🌍 SERVIDOR")
+        addCheckRow("Whitebeard spawnado:", isWhitebeardSpawned())
+        addCheckRow("Saw spawnado:", isSawSpawned())
+        addCheckRow("Doflamingo spawnado:", isDoflamingoBossSpawned())
+        addCheckRow("Almirante de Gelo spawnado:", isIceAdmiralSpawned())
+        addCheckRow("Capitão Amaldiçoado (Navio):", isCursedCaptainShipSpawned())
+        addCheckRow("Jeremy spawnado:", isJeremySpawned())
+        addCheckRow("Factory spawnada:", isFactorySpawned())
+        addCheckRow("Lua atual:", getCurrentMoon() .. (isFullMoon() and " (Lua Cheia!)" or ""))
+        addCheckRow("Rip Indra spawnado:", isRipIndraSpawned())
+        addCheckRow("Katakuri V1 spawnado:", isKatakuriV1Spawned())
+        addCheckRow("Katakuri V2 spawnado:", isKatakuriV2Spawned())
+        addCheckRow("Capitão Amaldiçoado (foice):", isCursedCaptainScytheSpawned())
+        addCheckRow("Elite Boss spawnado:", isEliteBossSpawned())
+        addCheckRow("Pirate Raid spawnada:", isPirateRaidSpawned())
+        
+        -- Primeiro Mar
+        addSection("🌊 PRIMEIRO MAR")
+        addInfoRow("Nível:", getLevel())
+        addCheckRow("Sabre (item):", isSabreUnlocked())
+        addCheckRow("Shark Saw:", hasSharkSaw())
+        addCheckRow("Haki do Armamento:", hasHakiArmamento())
+        addCheckRow("Haki da Observação:", hasHakiObservacao())
+        addCheckRow("Soru:", hasSoru())
+        addCheckRow("Pulo duplo:", hasDoubleJump())
+        addMasteryRow("Electric V1:", getElectricMastery())
+        addMasteryRow("Dark Step V1:", getDarkStepMastery())
+        addMasteryRow("Sharkman Karate V1:", getSharkmanMastery())
+        
+        -- Segundo Mar
+        addSection("🌊 SEGUNDO MAR")
+        addInfoRow("Nível:", getLevel())
+        addCheckRow("Missão Doflamingo:", isDoflamingoDone())
+        addCheckRow("Missão Coliseu:", isColiseumDone())
+        addCheckRow("Raça V2:", false)  -- placeholder, detectar depois
+        addCheckRow("Raça V3:", false)
+        addCheckRow("Rosa 1:", hasRosa1())
+        addCheckRow("Rosa 2:", hasRosa2())
+        addCheckRow("Rosa 3:", hasRosa3())
+        addCheckRow("Rengoku:", hasRengoku())
+        addCheckRow("Acidum Rifle:", hasAcidumRifle())
+        addMasteryRow("Dark Step V2:", hasDarkStepV2() and 300 or 0)
+        addMasteryRow("Sharkman Karate V2:", hasSharkmanV2() and 300 or 0)
+        addMasteryRow("Superhuman:", getSuperhumanMastery())
+        addMasteryRow("Dragon Breath:", getDragonBreathMastery())
+        
+        -- Terceiro Mar
+        addSection("🌊 TERCEIRO MAR")
+        addInfoRow("Nível máximo atual:", getLevel())
+        addCheckRow("Mirror Fractal:", hasMirrorFractal())
+        addCheckRow("Shark Anchor:", hasSharkAnchor())
+        addCheckRow("Dark Dagger:", hasDarkDagger())
+        addCheckRow("Spikey Trident:", hasSpikeyTrident())
+        addCheckRow("Yama:", hasYama())
+        addCheckRow("Tushita:", hasTushita())
+        addCheckRow("Cursed Dual Katana:", hasCursedDualKatana())
+        addCheckRow("Soul Guitar:", hasSoulGuitar())
+        addCheckRow("Raça V4:", hasRaceV4())
+        addMasteryRow("Electric V2:", getElectricV2Mastery())
+        addMasteryRow("God Human:", getGodHumanMastery())
+        addMasteryRow("Sanguine Art:", getSanguineMastery())
+        addMasteryRow("Dragon Talon:", getDragonTalonMastery())
+        
+        -- Resumo Final (repetir status principais)
+        addSection("📊 RESUMO FINAL")
+        addCheckRow("Sabre + Shark Saw + Rengoku + Acidum Rifle", hasSabreUnlocked() and hasSharkSaw() and hasRengoku() and hasAcidumRifle())
+        addCheckRow("Todas as Rosas", hasRosa1() and hasRosa2() and hasRosa3())
+        addCheckRow("Todas as Katana (Yama, Tushita, Cursed)", hasYama() and hasTushita() and hasCursedDualKatana())
+        addCheckRow("Estilos de combate principais (Superhuman, God Human, Sanguine)", hasSuperhuman() and hasGodHuman() and hasSanguineArt())
+        addCheckRow("Haki completos (Armamento + Observação)", hasHakiArmamento() and hasHakiObservacao())
+        
+        -- Ajustar canvas size dinamicamente após preenchimento
+        task.wait()
+        local totalHeight = 0
+        for _, child in ipairs(scroll:GetChildren()) do
+            if child:IsA("Frame") or child:IsA("TextLabel") then
+                totalHeight = totalHeight + child.Size.Y.Offset + (layout.Padding.Offset or 8)
+            end
+        end
+        scroll.CanvasSize = UDim2.new(0, 0, 0, totalHeight + 50)
+    end
+    
+    -- ========== LOOP DE ATUALIZAÇÃO ==========
+    local function atualizarDados()
+        if not isMainActive then return end
+        if currentScroll then
+            preencherScroll(currentScroll)
+        end
+    end
+    
+    -- ========== ATIVAR ABA MAIN ==========
+    local function ativarMain()
+        isMainActive = true
+        if updateConnection then updateConnection:Disconnect() end
+        updateConnection = RunService.Heartbeat:Connect(function()
+            -- Atualiza a cada ~1 segundo
+            wait(1)
+            if isMainActive then
+                atualizarDados()
+            end
+        end)
+        -- Cria o scroll se não existir
+        if not currentScroll then
+            currentScroll = criarScroll()
+        end
+        preencherScroll(currentScroll)
+        categoriaLabel.Text = "CATEGORIA : Main (Progresso)"
+    end
+    
+    -- ========== DESATIVAR ==========
+    local function desativarMain()
+        isMainActive = false
+        if updateConnection then
+            updateConnection:Disconnect()
+            updateConnection = nil
+        end
+        if currentScroll then
+            currentScroll:Destroy()
+            currentScroll = nil
+        end
+    end
+    
+    -- ========== CONECTAR AO BOTÃO MAIN ==========
+    -- Primeiro, precisamos interceptar o clique do botão MAIN sem perder o comportamento original de mudar o texto da categoria.
+    -- O script original já tem um evento que muda o texto. Vamos apenas adicionar o nosso.
+    -- Como o botão MAIN já tem um evento conectado (do complemento de atualizar categoria), vamos adicionar mais um.
+    btnMain.MouseButton1Click:Connect(function()
+        -- Se já estiver ativo, não recria
+        if isMainActive then
+            -- apenas garante que o scroll está visível
+            if not currentScroll then
+                currentScroll = criarScroll()
+                preencherScroll(currentScroll)
+            end
+        else
+            desativarMain() -- limpa possível estado anterior
+            ativarMain()
+        end
+    end)
+    
+    -- Inicialmente, se a aba Main estiver ativa por padrão? Por padrão o HUB já mostra a categoria "MAIN" (do script original), mas sem conteúdo. Vamos ativar ao iniciar.
+    -- Para não conflitar, esperamos um pouco e ativamos.
+    task.wait(0.5)
+    ativarMain()
+end
+-- =====================================================
+
+return LMG2L["ScreenGui_1"], require;
