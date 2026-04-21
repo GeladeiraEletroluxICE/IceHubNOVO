@@ -501,6 +501,67 @@ do
         end)
     end
 end
+
+-- =====================================================
+-- COMPLEMENTO: MENSAGEM DE BOAS-VINDAS NA ABA MAIN
+-- =====================================================
+do
+    local frame3 = LMG2L["Frame3_17"]
+    local categoriaLabel = LMG2L["TextBox_18"]
+    local welcomeLabel = nil
+    local isMainActive = false
+    
+    -- Criar label de boas-vindas
+    local function criarWelcome()
+        if welcomeLabel and welcomeLabel.Parent then
+            welcomeLabel:Destroy()
+        end
+        welcomeLabel = Instance.new("TextLabel")
+        welcomeLabel.Parent = frame3
+        welcomeLabel.Size = UDim2.new(0.9, 0, 0.12, 0)
+        welcomeLabel.Position = UDim2.new(0.05, 0, 0.18, 0) -- abaixo do CATEGORIA
+        welcomeLabel.BackgroundColor3 = Color3.fromRGB(50, 70, 90)
+        welcomeLabel.BackgroundTransparency = 0.3
+        welcomeLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        welcomeLabel.FontFace = Font.new("rbxasset://fonts/families/FredokaOne.json")
+        welcomeLabel.TextSize = 24
+        welcomeLabel.Text = "❄️ Bem-vindo ao ICE HUB ❄️"
+        welcomeLabel.TextXAlignment = Enum.TextXAlignment.Center
+        welcomeLabel.TextYAlignment = Enum.TextYAlignment.Center
+        welcomeLabel.BorderSizePixel = 0
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = welcomeLabel
+    end
+    
+    local function limparWelcome()
+        if welcomeLabel and welcomeLabel.Parent then
+            welcomeLabel:Destroy()
+            welcomeLabel = nil
+        end
+    end
+    
+    -- Botão Main
+    local botaoMain = LMG2L["MAIN_e"]
+    botaoMain.MouseButton1Click:Connect(function()
+        limparWelcome()
+        criarWelcome()
+    end)
+    
+    -- Outros botões removem o welcome
+    local outrosBotoes = {LMG2L["FARM_11"], LMG2L["QUEST_13"], LMG2L["FRUITS_c"], LMG2L["RAIDS_8"], LMG2L["CONFIG_a"]}
+    for _, btn in ipairs(outrosBotoes) do
+        btn.MouseButton1Click:Connect(function()
+            limparWelcome()
+        end)
+    end
+    
+    -- Inicialmente, simular clique no Main para mostrar o welcome
+    task.wait(0.5)
+    if LMG2L["MAIN_e"] then
+        LMG2L["MAIN_e"].MouseButton1Click:Fire()
+    end
+end
 -- =====================================================
 
 return LMG2L["ScreenGui_1"], require;
